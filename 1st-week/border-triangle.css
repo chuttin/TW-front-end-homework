@@ -1,0 +1,30 @@
+body {
+  display: flex;
+}
+
+.triangle1 {
+  left: 100px;
+  top: 200px;
+  width: 0;
+  height: 0;
+  border: 50px solid;
+  border-color: transparent transparent transparent black;
+}
+
+.triangle2 {
+  left: 200px;
+  top: 200px;
+  width: 0;
+  height: 0;
+  border: 50px solid;
+  border-color: black transparent transparent transparent;
+}
+
+.triangle3 {
+  left: 300px;
+  top: 200px;
+  width: 0;
+  height: 0;
+  border: 50px solid;
+  border-color: transparent black transparent transparent;
+}
