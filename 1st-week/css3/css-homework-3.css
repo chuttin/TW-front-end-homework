@@ -1,0 +1,215 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.bg-box {
+  height: auto;
+  background: linear-gradient(to top left, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  position: relative;
+  margin-top: 100px;
+
+  height: auto;
+
+  color: white;
+  font-size: 92px;
+  letter-spacing: 2.4px;
+  text-shadow: black 0 10px;
+}
+
+.text2 {
+  position: relative;
+  padding: 10px 20px;
+  margin-top: 50px;
+  
+  width: 300px;
+  height: auto;
+
+  color: #007d00;
+  font-family: "iconfont";
+  background-color: white;
+  line-height: 20px;
+  background: linear-gradient(-135deg, transparent 12px, white 0);
+}
+
+.triangle {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  right: 0;
+  top: 0;
+  border: 8px solid;
+  border-color: transparent transparent gray grey;
+}
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1574909918777'); /* IE9 */
+  src: url('iconfont.eot?t=1574909918777#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAM0AAsAAAAABxQAAALnAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqBeIF6ATYCJAMMCwgABCAFhG0HPBtGBsi+YjDGUM3rnshCKZ25cqafXqLarkN4h7w3vh+sE7bBXzIC+v1Y+wTVBkk0ahOPookhkbSaJBIhM52QoTTRJncXb/ofOOc6RKOOGYJbW9Oj/eJJ8gN+YC/91lo+o6LGlZ/kqxKpsmpnZy+7x/nJp6RclePxlaaIgxsUSsYZpJLzOwwwlJlTTgOKLW5Z7Dl+/i46bK3XT1BXx/oBdJZYYnxwdwwQ9bUuqKCC1BUhJdQ8xtZiXZ5rKEYcTpvngc2/y3Obe1CACQa6l0URDbEuMetDHPbKvE5ApXYKcHp4cZ0oyKx5AWEntipRyPllWUiVC0prtuZT8KiVx5s4bsPPh38mEEQlibV0YfvQSex8811aF1qfQDCfFcIuEgYAMmGz1r4hHccHwCo1aUavBZTKgjhXqAghX5eW2n94RIFQyiquBj2UiHzr8lNFKLzrqxIoRca8hAOWunmsNjYi51sFvlzvF776tx9HTVEiNXPGQhcrhm/e2sd6eGJ1jl8+Fdb/eyf92qNWD9uT5vAdV38nZb3Rahqr4O/raQmkiV93/3+k+5vr9U696Vc6Tvesyzp/yAC2JBQ0+3JJis/Aw79+n+ve1AedwSsbVdjRv0C5iCD4x235niffiSIrljJajLXbdSYdI6MRlXaIguVuVI1Xt7xHMijXkiIq04akXAcxUwdQosogSpUbQ6V+o91VmmTSQq5AnwMgqHdDVOsBSb0HMVOfKNHqhVL1AUaltSAfWaUrxFQvQyXogPMGsabYOCYpRaWXaJ9CxVlRSL9FXnohMEeTYuoYY+Q5VuTPdlaIgYApgiHchmFIkDD5qGUUiSzm+tjUPWnkUpQomcKQIpADON6AmEZixh8tSqX3X0LWk5DCLT017luILXnjA5PG6EE8lse9eu7lkdwza6YgDBBgJAKGYEWhHScgqZ/kQ5oYiUZEF+Z0Ghb0lY/WV0YfkCcMYJ2YQgwpZKWHcewqKqYliZKX0CUSAA==') format('woff2'),
+  url('iconfont.woff?t=1574909918777') format('woff'),
+  url('iconfont.ttf?t=1574909918777') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1574909918777#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text2 p:before {
+  content: "\e654";
+}
+
+.text2 p:after {
+  content: "\e615";
+}
+
+.img-box3 {
+
+  width: auto;
+  height: auto;
+
+  margin-top: 50px;
+  display: flex;
+}
+
+.empire-state,
+.midtown,
+.liberty {
+  background-color: white;
+  margin: 0 20px;
+  padding: 10px;
+
+  width: 300px;
+  height: 200px;
+
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.img-box3 img {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+.empire-img:hover + .empire-text {
+  z-index: 0;
+}
+
+.midtown-img:hover + .midtown-text {
+  z-index: 0;
+}
+
+.liberty-img:hover + .liberty-text {
+  z-index: 0;
+}
+
+.square {
+  position: absolute;
+  overflow: hidden;
+  width: 300px;
+  height: 200px;
+  z-index: -2;
+}
+
+#square-bg {
+  position: absolute;
+  margin-top: -75px;
+  width: 200px;
+  height: 200px;
+
+  transform: rotate(45deg);
+  background-color: rgba(0,0,0,0.5);
+}
+
+.empire-text,
+.midtown-text,
+.liberty-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 300px;
+  height: 200px;
+}
+
+.empire-text {
+  background-color: rgba(58, 1, 132, 0.44);
+  color: white;
+}
+
+.midtown-text {
+  color: white;
+}
+
+.midtown-text p {
+  z-index: -1;
+}
+
+.liberty-text {
+  background-color: rgba(255, 231, 179, 0.3);
+  color: black;
+}
+
+.text-title {
+  margin: 20px 0;
+  width: 180px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.liberty-text .text-title,
+.midtown-text .text-title {
+  border-bottom: black 1px solid;
+}
+
+.text-content {
+  padding: 0 10px;
+  text-align: center;
+  font-size: 12px;
+  font-style: oblique;
+}
+
+.read-more {
+  margin-top: 20px;
+  padding: 10px;
+
+  background-color: black;
+  color: white;
+}
+
+article {
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 20px;
+
+  width: 590px;
+
+  background: white;
+  border-radius: 5px;
+}
+
+article p {
+  column-count: 3;
+  letter-spacing: normal;
+  font-family: serif;
+  font-size: 16px;
+}
+
