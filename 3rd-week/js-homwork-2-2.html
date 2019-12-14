@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>事件监听</title>
+  </head>
+  <body>
+    <ul id='number-btn-list'>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+
+    <script>
+      var parentnode = document.getElementById('number-btn-list');
+      parentnode.addEventListener('click',function(event) {
+        if (event.target.tagName.toLowerCase() === 'li') {
+          alert(event.target.innerHTML);
+        }
+      })
+
+      // var children = parentnode.childNodes;
+      // children.forEach(function f(item, i, list) {
+      //   item.addEventListener('click', function(){
+      //     alert(children[i].innerHTML);
+      //   });
+      // });      
+    </script>
+  </body>
+  </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>定时器示例</title>
+  </head>
+  <body> 
+    <input type="text" id="result">
+    <input type="button" value="开始" id="startBtn">
+    <input type="button" value="结束" id="stopBtn">
+    
+    <script>
+      var startTiming = document.getElementById('startBtn');
+      var stopTiming = document.getElementById('stopBtn');
+      var timingDisplay = document.getElementById('result');
+      
+      startTiming.addEventListener('click', TimeCal);
+
+      function TimeCal(){
+        var startTime = Date.now();
+        stopTiming.addEventListener('click', function () {
+          var stopTime = Date.now();
+          var timingMs = stopTime - startTime;
+          var timing = Math.round(timingMs / 1000);
+          var timingHours = Math.floor(timing / 3600);
+          var timingMinutes = Math.floor((timing % 3600) / 60);
+          var timingSeconds = (timing % 3600) % 60;
+          
+          timingDisplay.value = timingHours + ':' + timingMinutes + ':' + timingSeconds;
+        });
+      }
+    </script>
+  </body>
+  </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js-homework-3</title>
+  <script src="js-homework-3.js"></script>
+</head>
+  <body>
+    <input placeholder="username" type="text" id="userName" />
+    <input placeholder="password" type="text" id="password" />
+    <button id="submit" onclick="isRightPassword()">submit</button>
+  </body>
+
+  <script>
+    function isRightPassword(){
+      var passWord = document.getElementById('password');
+      var userName = document.getElementById('userName');
+      if (passWord.value !== '123' || userName.value !== 'ctt'){
+        passWord.value = '';
+        userName.value = '';
+        alert('Username or Password is wrong');
+      }else{
+        alert('Login successfully');
+      }
+    }
+  </script>
+</html>
