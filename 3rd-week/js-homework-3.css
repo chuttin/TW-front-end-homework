@@ -1,0 +1,49 @@
+div {
+  width: 550px;
+}
+
+table {
+  width: auto;
+  border: 1px solid #dddddd;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+th {
+  width: auto;
+  height: 35px;
+  background-color: #eeeeee;
+  padding: 0 15px;
+  border: 1px solid #dddddd;
+}
+
+td {
+  text-align: center;
+  height: 35px;
+  width: auto;
+  padding: 0 15px;
+  border: 1px solid #dddddd;
+}
+
+#lastTr span{
+  margin: 0;
+}
+
+table:last-child:last-child {
+  text-align: end;
+}
+
+p {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+span {
+  margin: 0 8px;
+}
+
+button {
+  background-color: #eeeeee;
+  font-weight: bold;
+}
