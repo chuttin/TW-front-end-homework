@@ -99,21 +99,38 @@ function phaseAct() {
   }
 }
 
-var dataStorage = [];
+function localStoreData () {
+  window.localStorage.setItem('firstData', JSON.stringify(dataStorage));
+}
+
+function initial () {
+  var initial = window.localStorage.getItem('firstData');
+  if (initial){
+    dataStorage = JSON.parse(initial);
+  }else{
+    dataStorage = [];
+  }
+  refreshList(dataStorage);
+}
+
 var phase = 3;
 var isColor = false;
 
 window.onload = function () {
+  initial();
+
   var addBtn = document.getElementById('add-btn');
   addBtn.addEventListener('click', function() {
     addStorage();
     phaseAct();
+    localStoreData();
   });
 
   window.addEventListener('keydown', function (event) {
     if (event.code === 'Enter') {
       addStorage();
       phaseAct()
+      localStoreData();
     }
   });
 
@@ -122,6 +139,7 @@ window.onload = function () {
     if (event.target.tagName.toLowerCase() === 'img') {
       deleteIcon(event.target);
       refreshList(dataStorage);
+      localStoreData();
     }
 
     if (event.target.tagName.toLowerCase() === 'input') {
@@ -135,6 +153,7 @@ window.onload = function () {
         }
       }
       phaseAct();
+      localStoreData();
     }
   });
 
@@ -146,4 +165,6 @@ window.onload = function () {
 
   var allBtn = document.getElementById('all-btn');
   allBtn.addEventListener('click', allList);
+
+  // window.localStorage.clear();
 }
