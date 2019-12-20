@@ -1,0 +1,25 @@
+#father-box {
+  height: 800px;
+  width: 1000px;
+  position: relative;
+  background-color: #f0f0f0;
+}
+
+#movable-box {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  background-color: green;
+  z-index: 10;
+}
+
+#unmovable-box {
+  position: absolute;
+  left: 600px;
+  top: 500px;
+
+  height: 80px;
+  width: 80px;
+
+  background-color: yellow;
+}
