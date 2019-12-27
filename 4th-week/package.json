@@ -1,0 +1,15 @@
+{
+  "name": "4th-week",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node --verbose spec",
+    "test-single": "jasmine-node --verbose "
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
