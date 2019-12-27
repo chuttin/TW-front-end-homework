@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test": "jasmine",
+    "test-single": "jasmine-node --verbose "
+  },
+  "dependencies": {
+    "jasmine-node": "1.14.5"
+  },
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
