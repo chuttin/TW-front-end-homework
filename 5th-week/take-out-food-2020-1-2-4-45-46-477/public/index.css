@@ -1,0 +1,16 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 8px;
+}
+
+input {
+  width: 20px;
+}
+
+#message {
+	height: auto;
+	line-height: 30px;
+  border: 1px solid red;
+  text-align: left;
+}
