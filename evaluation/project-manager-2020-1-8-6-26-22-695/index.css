@@ -77,6 +77,18 @@ body {
   border-radius: 5px;
 }
 
+.menu-card-percent {
+  position: absolute;
+  top: 70px;
+  right: 15px;
+  
+  font-size: 32px;
+  font-weight: 500;
+  color: #fff;
+  
+  line-height: 30px;
+}
+
 .icon {
   position: absolute;
   top: 8px;
