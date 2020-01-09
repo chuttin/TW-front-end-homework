@@ -13,9 +13,8 @@ body {
   position: relative;
   padding: 10px;
   display: flex;
-
-  width: auto;
 }
+
 .menu-card {
   position: relative;
   margin: 10px;
@@ -23,22 +22,24 @@ body {
   width: 25%;
   height: 130px;
 
-  border-radius: 8px;
+  font-family: serif, "Microsoft YaHei";
+
+  border-radius: 5px;
 }
 
-#all {
+#menu-all {
   background-color: #31b48d;
 }
 
-#pending {
+#menu-pending {
   background-color: #38a1f2;
 }
 
-#active {
+#menu-active {
   background-color: #7538c7;
 }
 
-#closed {
+#menu-closed {
   background-color: #3b67a4;
 }
 
@@ -48,8 +49,7 @@ body {
   left: 15px;
 
   font-size: 14px;
-  font-family: serif, "Microsoft YaHei";
-  color: #ffffff;
+  color: #fff;
 }
 
 .menu-card-count {
@@ -59,8 +59,7 @@ body {
   
   font-size: 32px;
   font-weight: 500;
-  font-family: serif, "Microsoft YaHei";
-  color: #ffffff;
+  color: #fff;
   
   line-height: 30px;
 }
@@ -72,8 +71,7 @@ body {
   padding: 5px;
 
   font-size: 14px;
-  color: #ffffff;
-  font-family: serif, "Microsoft YaHei";
+  color: #fff;
 
   background: rgba(255, 255, 255, 0.3);
   border-radius: 5px;
@@ -92,5 +90,86 @@ body {
   overflow: hidden;
 
   opacity: 0.3;
-  color: #ffffff;
+  color: #fff;
+}
+
+#project-list {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  font-family: serif, "Microsoft YaHei";
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid #DCDEE3;
+}
+
+th {
+  padding: 15px;
+  color: #333;
+  background: #EBECF0;
+  text-align: start;
+}
+
+td {
+  padding: 15px;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+.name {
+  width: 21%;
+}
+
+.description {
+  width: 45%;
+}
+
+.showTwoLine {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.endtime {
+  width: 13%;
+}
+
+.status {
+  width: 13%;
+}
+
+.operation {
+  width: 7%;
+}
+
+.pending {
+  color: #EE706D;
+}
+
+.closed {
+  color: #F7DA47;
+}
+
+.active {
+  color: #666;
+}
+
+td button {
+  padding: 5px 8px;
+
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: #EE706D;
+  color: #fff;
 }
