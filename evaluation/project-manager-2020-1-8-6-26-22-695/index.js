@@ -110,14 +110,12 @@ let deleteConfirm = deleteButton => {
 }
 
 let deleteYes = confirm => {
-
   let bodyEl = document.body;
   let top = window.scrollY;
   let deleteconfirm = document.getElementById('delete-win');
   let deleteId = confirm.parentNode.parentNode.name;
 
   axios.delete(`http://localhost:3000/projects/${deleteId}`).then(() => {
-    // let deleteRow = document.getElementById(`${deleteId}`);
     getData(contentShow);
   });
   
