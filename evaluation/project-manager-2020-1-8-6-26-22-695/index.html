@@ -50,13 +50,6 @@
     <div id="project-list">
       <h1>项目列表</h1>
       <table id="project-table">
-        <tr>
-          <th class="name">项目名称</th>
-          <th class="description"><p>项目描述</p></th>
-          <th class="endtime">截止时间</th>
-          <th class="status">状态</th>
-          <th class="operating">操作</th>
-        </tr>
       </table>
     </div>
 
@@ -70,8 +63,8 @@
         </svg>
         <span id="alert">提示</span>
         <span id="delete-ask">确认删除该项目吗？</span>
-        <button id="delete-yes">确认</button>
-        <button id="delete-no">取消</button>
+        <button id="delete-yes" onclick="deleteYes(this)">确认</button>
+        <button id="delete-no" onclick="deleteNo()">取消</button>
       </div>
     </div>
   </body>

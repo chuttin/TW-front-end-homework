@@ -117,9 +117,8 @@ let deleteYes = confirm => {
   let deleteId = confirm.parentNode.parentNode.name;
 
   axios.delete(`http://localhost:3000/projects/${deleteId}`).then(() => {
-    let deleteRow = document.getElementById(`${deleteId}`);
-    deleteRow.remove();
-    getData(menuShow);
+    // let deleteRow = document.getElementById(`${deleteId}`);
+    getData(contentShow);
   });
   
   deleteconfirm.style.display = "none";
