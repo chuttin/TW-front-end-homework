@@ -24,7 +24,6 @@ let listShow = (data) => {
   descriptionShowTwoLine();
 }
 
-
 let statusToClass = (status) => {
   let statusClass = '';
   if (status === 'ACTIVE') {
@@ -57,7 +56,6 @@ let descriptionShowTwoLine = () => {
   });
 }
 
-
 let menuCount = (data) => {
   let [activeCount, pendingCount, closedCount, sum] = [0, 0, 0, 0];
   data.map((ele) => {
@@ -81,7 +79,6 @@ let menuCount = (data) => {
   document.getElementById('active-percent').innerHTML = `${Math.round((activeCount / sum) * 100)}%`;
   document.getElementById('closed-percent').innerHTML = `${Math.round((closedCount / sum) * 100)}%`;
 }
-
 
 let deleteProj = (data) => {
   let deleteButton = document.getElementById('project-table');
@@ -108,6 +105,7 @@ let deleteconfirm = (data, deleteId) => {
       data.map((ele) => {
         if (ele.id === Number(deleteId)) {
           axios.delete('http://localhost:3000/projects/'+ele.id);
+          location.reload();
         }
       });
     }
