@@ -105,7 +105,8 @@ let deleteconfirm = (data, deleteId) => {
       data.map((ele) => {
         if (ele.id === Number(deleteId)) {
           axios.delete('http://localhost:3000/projects/'+ele.id);
-          window.location.reload();
+          getData(listShow);
+          getData(menuCount);
         }
       });
     }
