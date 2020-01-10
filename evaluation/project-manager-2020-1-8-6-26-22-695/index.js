@@ -19,7 +19,11 @@ let listShow = (data) => {
     `;
     table.appendChild(row);
   });
+
+  descriptionShowAll();
+  descriptionShowTwoLine();
 }
+
 
 let statusToClass = (status) => {
   let statusClass = '';
@@ -53,10 +57,6 @@ let descriptionShowTwoLine = () => {
   });
 }
 
-let descriptionAnime = () => {
-  descriptionShowAll();
-  descriptionShowTwoLine();
-}
 
 let menuCount = (data) => {
   let [activeCount, pendingCount, closedCount, sum] = [0, 0, 0, 0];
@@ -77,13 +77,51 @@ let menuCount = (data) => {
   document.getElementById('active-count').innerHTML = activeCount;
   document.getElementById('closed-count').innerHTML = closedCount;
   document.getElementById('all-count').innerHTML = sum;
-  document.getElementById('pending-percent').innerHTML = `${(pendingCount / sum) * 100}%`;
-  document.getElementById('active-percent').innerHTML = `${(activeCount / sum) * 100}%`;
-  document.getElementById('closed-percent').innerHTML = `${(closedCount / sum) * 100}%`;
+  document.getElementById('pending-percent').innerHTML = `${Math.round((pendingCount / sum) * 100)}%`;
+  document.getElementById('active-percent').innerHTML = `${Math.round((activeCount / sum) * 100)}%`;
+  document.getElementById('closed-percent').innerHTML = `${Math.round((closedCount / sum) * 100)}%`;
+}
+
+
+let deleteProj = (data) => {
+  let deleteButton = document.getElementById('project-table');
+
+  deleteButton.addEventListener('click', (event) => {
+    if (event.target.nodeName === 'BUTTON') {
+      let id = event.target.parentNode.parentNode.id;
+      deleteconfirm(data, id);
+    }
+  });
+}
+
+let deleteconfirm = (data, deleteId) => {
+  let deleteconfirm = document.getElementById('delete-win');
+  deleteconfirm.style.display = "block";
+
+  let bodyEl = document.body;
+  let top = window.scrollY;
+  bodyEl.style.position = 'fixed';
+  bodyEl.style.top = -top + 'px';
+
+  deleteconfirm.addEventListener('click', (event) => {
+    if (event.target.id === 'delete-yes') {
+      data.map((ele) => {
+        if (ele.id === Number(deleteId)) {
+          axios.delete('http://localhost:3000/projects/'+ele.id);
+        }
+      });
+    }
+    if (event.target.id === 'delete-no' || event.target.id === 'cancel-icon' || event.target.id === 'delete-yes') {
+      deleteconfirm.style.display = "none";
+      bodyEl.style.position = '';
+      bodyEl.style.top = '';
+      window.scrollTo(0, top);
+    }
+  });
 }
 
 window.onload = () => {
   getData(listShow);
-  descriptionAnime();
   getData(menuCount);
+  getData(deleteProj);
 }

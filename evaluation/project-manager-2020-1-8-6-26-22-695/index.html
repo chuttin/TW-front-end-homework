@@ -1,63 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="./index.css">
-  <script src="./index.js"></script>
-  <script src="./iconfont/iconfont.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <title>Document</title>
-</head>
-<body>
-  <div id="menu">
-    <div class="menu-card" id="menu-all">
-      <span class="menu-card-title">所有任务</span>
-      <span class="menu-card-count" id="all-count"></span>
-      <span class="menu-real-time">实时</span>
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-xiangmu"></use>
-      </svg>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <script src="./index.js"></script>
+    <script src="./iconfont/iconfont.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="menu">
+      <div class="menu-card" id="menu-all">
+        <span class="menu-card-title">所有任务</span>
+        <span class="menu-card-count" id="all-count"></span>
+        <span class="menu-real-time">实时</span>
+        <svg class="icon menu-icon" aria-hidden="true">
+          <use xlink:href="#icon-xiangmu"></use>
+        </svg>
+      </div>
+      <div class="menu-card" id="menu-pending">
+        <span class="menu-card-title">未解决</span>
+        <span class="menu-card-count" id="pending-count"></span>
+        <span class="menu-real-time">实时</span>
+        <span class="menu-card-percent" id="pending-percent"></span>
+        <svg class="icon menu-icon" aria-hidden="true">
+          <use xlink:href="#icon-weijiejue"></use>
+        </svg>
+      </div>
+      <div class="menu-card" id="menu-active">
+        <span class="menu-card-title">处理中</span>
+        <span class="menu-card-count" id="active-count"></span>
+        <span class="menu-real-time">实时</span>
+        <span class="menu-card-percent" id="active-percent"></span>
+        <svg class="icon menu-icon" aria-hidden="true">
+          <use xlink:href="#icon-loudou"></use>
+        </svg>
+      </div>
+      <div class="menu-card" id="menu-closed">
+        <span class="menu-card-title">已解决</span>
+        <span class="menu-card-count" id="closed-count"></span>
+        <span class="menu-real-time">实时</span>
+        <span class="menu-card-percent" id="closed-percent"></span>
+        <svg class="icon menu-icon" aria-hidden="true">
+          <use xlink:href="#icon-yijiejue2"></use>
+        </svg>
+      </div>
     </div>
-    <div class="menu-card" id="menu-pending">
-      <span class="menu-card-title">未解决</span>
-      <span class="menu-card-count" id="pending-count"></span>
-      <span class="menu-real-time">实时</span>
-      <span class="menu-card-percent" id="pending-percent"></span>
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-weijiejue"></use>
-      </svg>
-    </div>
-    <div class="menu-card" id="menu-active">
-      <span class="menu-card-title">处理中</span>
-      <span class="menu-card-count" id="active-count"></span>
-      <span class="menu-real-time">实时</span>
-      <span class="menu-card-percent" id="active-percent"></span>
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-loudou"></use>
-      </svg>
-    </div>
-    <div class="menu-card" id="menu-closed">
-      <span class="menu-card-title">已解决</span>
-      <span class="menu-card-count" id="closed-count"></span>
-      <span class="menu-real-time">实时</span>
-      <span class="menu-card-percent" id="closed-percent"></span>
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-yijiejue2"></use>
-      </svg>
-    </div>
-  </div>
 
-  <div id="project-list">
-    <h1>项目列表</h1>
-    <table id="project-table">
-      <tr>
-        <th class="name">项目名称</th>
-        <th class="description"><p>项目描述</p></th>
-        <th class="endtime">截止时间</th>
-        <th class="status">状态</th>
-        <th class="operating">操作</th>
-      </tr>
-    </table>
-  </div>
-</body>
+    <div id="project-list">
+      <h1>项目列表</h1>
+      <table id="project-table">
+        <tr>
+          <th class="name">项目名称</th>
+          <th class="description"><p>项目描述</p></th>
+          <th class="endtime">截止时间</th>
+          <th class="status">状态</th>
+          <th class="operating">操作</th>
+        </tr>
+      </table>
+    </div>
+
+    <div id="delete-win">
+      <div id="delete-confirm">
+        <svg class="icon confirm-icon" aria-hidden="true">
+          <use xlink:href="#icon-wenhao"></use>
+        </svg>
+        <svg class="icon" id="cancel-icon" aria-hidden="true">
+          <use xlink:href="#icon-guanbi"></use>
+        </svg>
+        <span id="alert">提示</span>
+        <span id="delete-ask">确认删除该项目吗？</span>
+        <button id="delete-yes">确认</button>
+        <button id="delete-no">取消</button>
+      </div>
+    </div>
+  </body>
 </html>
