@@ -105,10 +105,10 @@ let deleteconfirm = (data, deleteId) => {
       data.map((ele) => {
         if (ele.id === Number(deleteId)) {
           axios.delete('http://localhost:3000/projects/'+ele.id);
-          getData(listShow);
-          getData(menuCount);
         }
       });
+      getData(listShow);
+      getData(menuCount);
     }
     if (event.target.id === 'delete-no' || event.target.id === 'cancel-icon' || event.target.id === 'delete-yes') {
       deleteconfirm.style.display = "none";
