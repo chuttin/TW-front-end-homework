@@ -7,7 +7,7 @@ let getData = callback => {
 
 let menuShow = data => {
   let [activeCount, pendingCount, closedCount, sum] = [0, 0, 0, 0];
-  data.map((ele) => {
+  data.map(ele => {
     if (ele.status === "ACTIVE") {
       activeCount += 1;
     }
@@ -40,14 +40,14 @@ let listShow = data => {
   </tr>
   `;
 
-  data.map((ele) => {
+  data.map(ele => {
     let row = document.createElement('tr');
     row.setAttribute('class', 'projRow');
     row.setAttribute('id', `${ele.id}`);
     row.innerHTML = `<td class="name">${ele.name}</td>
     <td class="description" id="description${ele.id}"><p class="showTwoLine">${ele.description}</p></td>
     <td class="endtime">${ele.endTime}</td>
-    <td class="status ${statusToClass(ele.status)}" id="status${ele.id}">${ele.status}</td>
+    <td class="status ${ele.status.toLowerCase()}" id="status${ele.id}">${ele.status}</td>
     <td class="operating"><button onclick="deleteConfirm(this)">删除</button></td>
     `;
     table.appendChild(row);
@@ -60,20 +60,6 @@ let listShow = data => {
 let contentShow = (data) => {
   menuShow(data);
   listShow(data);
-}
-
-let statusToClass = status => {
-  let statusClass = '';
-  if (status === 'ACTIVE') {
-    statusClass = 'active';
-  }
-  if (status === 'PENDING') {
-    statusClass = 'pending';
-  }
-  if (status === 'CLOSED') {
-    statusClass = 'closed';
-  }
-  return statusClass;
 }
 
 let descriptionShowAll = () => {
@@ -114,6 +100,7 @@ let deleteYes = confirm => {
   let top = window.scrollY;
   let deleteconfirm = document.getElementById('delete-win');
   let deleteId = confirm.parentNode.parentNode.name;
+
 
   axios.delete(`http://localhost:3000/projects/${deleteId}`).then(() => {
     getData(contentShow);

@@ -277,3 +277,12 @@ td button {
   bottom: 20px;
   right: 20px;
 }
+
+
+input {
+  margin-left: 20px;
+}
+
+.highlight {
+  background-color: yellow;
+}
