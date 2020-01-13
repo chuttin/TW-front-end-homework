@@ -1,8 +1,5 @@
 let getData = callback => {
-  axios.get('http://localhost:3000/projects')
-  .then(function(response) {
-    return callback(response.data);
-  });
+  return axios.get('http://localhost:3000/projects');
 }
 
 let menuShow = data => {
@@ -32,13 +29,22 @@ let menuShow = data => {
 let listShow = data => {
   let table = document.getElementById('project-table');
   table.innerHTML = `<tr>
-    <th class="name">项目名称</th>
-    <th class="description"><p>项目描述</p></th>
-    <th class="endtime">截止时间</th>
-    <th class="status">状态</th>
-    <th class="operating">操作</th>
-  </tr>
-  `;
+  <th class="name">项目名称</th>
+  <th class="description"><p>项目描述</p></th>
+  <th class="endtime">
+    <span>截止时间</span>
+    <div class="sort-icon">
+      <svg class="icon list-icon arrow-click" id="up-arrow" aria-hidden="true">
+        <use xlink:href="#icon-shengxu"></use>
+      </svg>
+      <svg class="icon list-icon arrow-unclick" id="down-arrow" aria-hidden="true">
+        <use xlink:href="#icon-jiangxu1"></use>
+      </svg>
+    </div>
+  </th>
+  <th class="status">状态</th>
+  <th class="operating">操作</th>
+ </tr>`;
 
   data.map(ele => {
     let row = document.createElement('tr');
@@ -60,6 +66,9 @@ let listShow = data => {
 let contentShow = (data) => {
   menuShow(data);
   listShow(data);
+  upsort(data);
+  downsort(data);
+  search(data);
 }
 
 let descriptionShowAll = () => {
@@ -101,9 +110,10 @@ let deleteYes = confirm => {
   let deleteconfirm = document.getElementById('delete-win');
   let deleteId = confirm.parentNode.parentNode.name;
 
-
   axios.delete(`http://localhost:3000/projects/${deleteId}`).then(() => {
-    getData(contentShow);
+    getData().then(response => {
+      contentShow(response.data);
+    });
   });
   
   deleteconfirm.style.display = "none";
@@ -123,6 +133,49 @@ let deleteNo = () => {
   window.scrollTo(0, top);
 }
 
+const upsort = (data) => {
+  let upsortButton = document.getElementById('up-arrow');
+  upsortButton.addEventListener('click', () => {
+    data.sort((a, b) => {
+      return a.endTime < b.endTime ? -1 : 1;
+    });
+    contentShow(data);
+  });
+}
+
+const downsort = (data) => {
+  let downsortButton = document.getElementById('down-arrow');
+  // let upsortData = [];
+  downsortButton.addEventListener('click', () => {
+    data.sort((a, b) => {
+      return a.endTime < b.endTime ? 1 : -1;
+    });
+    contentShow(data);
+  });
+}
+
+const search = (data) => {
+  let searchSubmit = document.getElementById('search-icon');
+  let searchData = [];
+  searchSubmit.addEventListener('click', () => {
+    let searchData = [];
+    let searchContent = document.getElementById('search-content').value;
+    if(searchContent) {
+      data.forEach((ele) => {
+        if (ele.name.match(searchContent)) {
+          searchData.push(ele);
+        }
+      });
+      listShow(searchData);
+    }else {
+      listShow(data);
+    }
+  });
+
+}
+
 window.onload = () => {
-  getData(contentShow);
+  getData().then(response => {
+    contentShow(response.data);
+  });
 }

@@ -6,19 +6,22 @@
 
 body {
   position: relative;
+  height: 100%;
+  overflow: scroll;
 }
 
 #menu {
   position: relative;
   padding: 10px;
   display: flex;
+  justify-content: space-around;
 }
 
 .menu-card {
   position: relative;
   margin: 10px;
+  flex-grow: 1;
 
-  width: 25%;
   height: 130px;
 
   font-family: serif, "Microsoft YaHei";
@@ -94,6 +97,23 @@ body {
   overflow: hidden;
 }
 
+.list-icon {
+  height: 25px;
+  width: 25px;
+}
+
+.arrow-click {
+  color: #3080FE;
+}
+
+.arrow-unclick {
+  color: #aaa;
+}
+
+.sort-icon {
+  display: inline-flex;
+}
+
 .menu-icon {
   position: absolute;
   top: 8px;
@@ -154,6 +174,7 @@ td {
 }
 
 .endtime {
+  position: relative;
   width: 13%;
 }
 
@@ -195,6 +216,7 @@ td button {
   width: 100%;
   height: 100%;
   display: none;
+
   font-family: serif, "Microsoft YaHei";
 
   background-color: rgba(0, 0, 0, 0.3);
@@ -278,11 +300,25 @@ td button {
   right: 20px;
 }
 
-
-input {
-  margin-left: 20px;
+#search-icon {
+  color: #aaa;
 }
 
-.highlight {
-  background-color: yellow;
+#search {
+  display: flex;
+  padding: 0 38px 0 12px;
+  width: 200px;
+  height: 32px;
+  border-radius: 20px;
+  border: solid 1px #eee;
+}
+
+#search-content {
+  width: 200px;
+  outline: none;
+  border: none;
+}
+
+#search-icon {
+  width: 20px;
 }
