@@ -18,56 +18,120 @@ public class App {
    * @param selectedItems 选择的菜品信息
    */
   public static String bestCharge(String selectedItems) {
-    String[] selectedArr = selectedItems.split(",");
-    Map<String, Integer> selectedMap = new HashMap<String, Integer>();
+    String[] itemsId = listInfo(selectedItems)[0];
+    String[] itemsCount = listInfo(selectedItems)[1];
 
-    List<String> listId = new ArrayList<String>();
-    List<Integer> listCount = new ArrayList<Integer>();
+    String[] itemsPrice = idToPriceAndName(itemsId)[0];
+    String[] itemsName = idToPriceAndName(itemsId)[1];
 
-    for(int i = 0; i < selectedArr.length; i++) {
-      String itemId = selectedArr[i].split(" x ")[0];
-      listId.add(itemId);
-      int itemCount = Integer.parseInt(selectedArr[i].split(" x ")[1]);
-      listCount.add(itemCount);
-    }
+    selectedItems = listShow(itemsId, itemsName, itemsCount, itemsPrice);
 
-    selectedItems = "============= 订餐明细 =============\n";
-
-    double firstMethod = 0;
-    double secondMethod = 0;
-    double thirdMethod = 0;
-    String halfPriceName = "";
-
-    for (int i = 0; i < listId.size(); i++) {
-      int index = Arrays.binarySearch(getItemIds(), listId.get(i));
-      selectedItems += getItemNames()[index] + " x " + listCount.get(i) + " = " + ((int)getItemPrices()[index]*listCount.get(i)) + "元\n";
-      firstMethod += getItemPrices()[index]*listCount.get(i);
-      if (Arrays.binarySearch(getHalfPriceIds(), listId.get(i)) >= 0) {
-        secondMethod += getItemPrices()[index] * listCount.get(i) / 2;
-        halfPriceName += getItemNames()[index] + "，";
-      }else {
-        secondMethod += getItemPrices()[index] * listCount.get(i);
-      }
-      thirdMethod += getItemPrices()[index]*listCount.get(i);
-    }
-
-    if (firstMethod >= 30.00) {
-      firstMethod -= 6.00;
-    }
-
-    selectedItems += "-----------------------------------\n";
-
-    if (thirdMethod == firstMethod && thirdMethod == secondMethod) {
-      selectedItems += "总计：" + (int)thirdMethod + "元\n";
-    }else if (firstMethod <= secondMethod) {
-      selectedItems += "使用优惠:\n" + "满30减6元，省6元\n" + "-----------------------------------\n" + "总计：" + (int)firstMethod + "元\n";
-    }else if (firstMethod > secondMethod) {
-      selectedItems += "使用优惠:\n" + "指定菜品半价(" + halfPriceName.substring(0, halfPriceName.length() - 1) + ")，省" + ((int)(thirdMethod - secondMethod)) + "元\n" +
-              "-----------------------------------\n" + "总计：" + (int)secondMethod + "元\n";
-    }
-
-    selectedItems += "===================================";
     return selectedItems;
+  }
+
+
+  public static String[][] listInfo(String selectedItem) {
+    String[] selectedArr = selectedItem.split(",");
+
+    String[][] itemInfo = new String[2][selectedArr.length];
+    String[] itemsId = new String[selectedArr.length];
+    String[] itemsCount = new String[selectedArr.length];
+
+    for (int i = 0; i < selectedArr.length; i++) {
+      itemsId[i] = selectedArr[i].split(" x ")[0];
+      itemsCount[i] = selectedArr[i].split(" x ")[1];
+    }
+
+    itemInfo[0] = itemsId;
+    itemInfo[1] = itemsCount;
+
+    return itemInfo;
+  }
+
+  public static String[][] idToPriceAndName(String[] itemsId) {
+    String[] itemsPrice = new String[itemsId.length];
+    String[] itemsName = new String[itemsId.length];
+
+    for (int i = 0; i < itemsId.length; i++) {
+      int index = Arrays.binarySearch(getItemIds(), itemsId[i]);
+      itemsPrice[i] = String.valueOf((int) getItemPrices()[index]);
+      itemsName[i] = getItemNames()[index];
+    }
+
+    String[][] priceAndName = {itemsPrice, itemsName};
+    return priceAndName;
+  }
+
+  public static int totalSum(String[] count, String[] price) {
+    int totalSum = 0;
+    for (int i = 0; i < count.length; i++) {
+      totalSum += Integer.parseInt(count[i]) * Integer.parseInt(price[i]);
+    }
+
+    return totalSum;
+  }
+
+  public static int firstMethodSum(int totalSum) {
+    int firstMethod = totalSum >= 30 ? totalSum - 6 : totalSum;
+    return firstMethod;
+  }
+
+  public static int secondMethodSum(String[] itemsId, String[] itemsCount, String[] itemsPrice) {
+    for (int i = 0; i < itemsId.length; i++) {
+      if (Arrays.binarySearch(getHalfPriceIds(), itemsId[i]) >= 0) {
+        itemsPrice[i] = String.valueOf(Integer.parseInt(itemsPrice[i]) / 2);
+      }
+    }
+
+    int secondMethodSum = totalSum(itemsCount, itemsPrice);
+    return secondMethodSum;
+  }
+
+  public static int whichMethod(int totalSum, int firstSum, int secondSum) {
+    if (totalSum == firstSum && totalSum == secondSum) {
+      return 3;
+    } else if (firstSum <= secondSum) {
+      return 1;
+    } else {
+      return 2;
+    }
+  }
+
+  public static String listShow(String[] ids, String[] names, String[] counts, String[] prices) {
+    StringBuilder listPrint = new StringBuilder();
+    listPrint.append("============= 订餐明细 =============\n");
+    for (int i = 0; i < names.length; i++) {
+      listPrint.append(names[i]).append(" x ").append(counts[i]).append(" = ").append(Integer.parseInt(counts[i]) * Integer.parseInt(prices[i])).append("元\n");
+    }
+
+    listPrint.append("-----------------------------------\n");
+
+    int totalSum = totalSum(counts, prices);
+
+    int firstMethodSum = firstMethodSum(totalSum);
+
+    int secondMethodSum = secondMethodSum(ids, counts, prices);
+
+    int whichMethod = whichMethod(totalSum, firstMethodSum, secondMethodSum);
+
+    int finalSum = 0;
+
+    if (whichMethod == 1) {
+      listPrint.append("使用优惠:\n").append("满30减6元，省6元\n").append("-----------------------------------\n");
+      finalSum = firstMethodSum;
+    }
+    if (whichMethod == 2) {
+      listPrint.append("使用优惠:\n").append("指定菜品半价(黄焖鸡，凉皮)，省").append(totalSum - secondMethodSum).append("元\n").append("-----------------------------------\n");
+      finalSum = secondMethodSum;
+    }
+    if (whichMethod == 3) {
+      finalSum = totalSum;
+    }
+    listPrint.append("总计：").append(finalSum).append("元\n").append("===================================");
+
+    String listShow = "" + listPrint;
+
+    return listShow;
   }
 
   /**
